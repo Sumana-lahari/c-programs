@@ -1,0 +1,614 @@
+// question - 1
+
+// A seminar of Artificial Intelligence is going on, and the number of participants from Foreign is A, while from India is B. All the participants would be staying in the same hotel. In each room equal number of participants have to stay( can be 1 in a room). Also foreign and Indian cannot stay in the same room. Find the minimum number of rooms required, if in each room the same number of participants are to be seated. 
+
+// Input: First line consists of T test cases. Only line of every test case consists of 2 integers A and B. 
+
+// Output: Print the value of no of rooms required. 
+
+code:
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+   int a,b;
+   
+   cin>>a>>b;
+   cout<<a/(__gcd(a,b))+b/(__gcd(a,b));
+   
+}
+input:
+7 8
+output:
+15
+
+// question - 2
+
+// Given an array A of N positive numbers. The task is to find the position where equilibrium first occurs in the array. Equilibrium position in an array is a position such that the sum of elements before it is equal to the sum of   elements after it.
+
+// Input Format: 
+
+// The first line contains an integer, denoting the size of the array. 
+// The second line contains integers denoting the elements of the array.
+
+// Output Format:
+
+// Print equilibrium index.
+
+code:
+
+//https://i...content-available-to-author-only...e.com/pkkAPG
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int sum=0,n,ind=-1;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+    cin>>arr[i];
+sum+=arr[i]
+}
+    int curr=0;
+    for(int i=0;i<n;i++){
+        curr+=arr[i];
+        if(sum%2==0 && curr==sum/2){
+            ind=i;
+            break;
+        }
+    }
+    cout<<ind;
+}
+input:
+7
+-7 1 5 2 -4 3 0
+output:
+5
+
+// question - 3
+
+// Write a C++ program to read elements in a matrix and interchange elements of primary(major) diagonal with secondary(minor) diagonal. 
+
+// Input Format: 
+
+// Enter the elements of the matrix of size[3, 3]
+
+// Output Format:
+
+// Print the matrix after interchanging the elements of major diagonal with secondary diagonal.
+
+code:
+//https://i...content-available-to-author-only...e.com/pkkAPG
+// https://i...content-available-to-author-only...e.com/EGvaM2
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    // we will do for n*n instead of 3*3 
+    int n;
+    cin>>n;
+    int matrix[n][n];
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            cin>>matrix[i][j];
+    int x=0,y=0,a=0,b=n-1;
+    while(x>=0 && x<n && y>=0 && y<n){
+        swap(matrix[x][y],matrix[a][b]);
+        x++,y++;
+        a++,b--;
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<matrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+input:
+3
+1 2 3
+4 5 6
+7 8 9
+
+output:
+3 2 1 
+4 5 6 
+9 8 7 
+
+other :
+#include<iostream>
+using namespace std;
+
+int main(){
+	int n;
+    cin>>n;
+    int x[n][n];
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            cin>>x[i][j];
+	cout<<"elements before swap"<<endl;
+	for (int i = 0; i <n; i++)
+	{
+		for (int j = 0; j <n; j++)
+		{
+			cout << "Element at x[" << i
+				<< "][" << j << "]: ";
+			cout << x[i][j]<<endl;
+		}
+	}
+	cout<<"elements after swap"<<endl;
+	swap(x[0][0],x[0][n-1]);
+	swap(x[n-1][0],x[n-1][n-1]);
+	
+    for (int i = 0; i <n; i++)
+	{
+		for (int j = 0; j <n; j++)
+		{
+			cout << "Element at x[" << i
+				<< "][" << j << "]: ";
+			cout << x[i][j]<<endl;
+		}
+	}
+	return 0;
+}
+input:
+4
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+output:
+elements before swap
+Element at x[0][0]: 0
+Element at x[0][1]: 1
+Element at x[0][2]: 2
+Element at x[0][3]: 3
+Element at x[1][0]: 4
+Element at x[1][1]: 5
+Element at x[1][2]: 6
+Element at x[1][3]: 7
+Element at x[2][0]: 8
+Element at x[2][1]: 9
+Element at x[2][2]: 10
+Element at x[2][3]: 11
+Element at x[3][0]: 12
+Element at x[3][1]: 13
+Element at x[3][2]: 14
+Element at x[3][3]: 15
+elements after swap
+Element at x[0][0]: 3
+Element at x[0][1]: 1
+Element at x[0][2]: 2
+Element at x[0][3]: 0
+Element at x[1][0]: 4
+Element at x[1][1]: 5
+Element at x[1][2]: 6
+Element at x[1][3]: 7
+Element at x[2][0]: 8
+Element at x[2][1]: 9
+Element at x[2][2]: 10
+Element at x[2][3]: 11
+Element at x[3][0]: 15
+Element at x[3][1]: 13
+Element at x[3][2]: 14
+Element at x[3][3]: 12
+// question - 4
+
+// The problem is to count all the possible paths from top left to bottom right of a MxN matrix with the constraints that from each cell you can either move to right or down.
+
+// Input Format: 
+
+// First line of the input contains an integers row and col. 
+
+// Output Format:
+
+// Number of ways possible from top left to reach bottom right
+
+code:
+//https://i...content-available-to-author-only...e.com/pkkAPG
+// https://i...content-available-to-author-only...e.com/EGvaM2
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,m;
+    cin>>n>>m;
+    int ans=1;
+    for(int i=1;i<=n+m-2;i++)
+    ans*=i;
+    for(int i=1;i<=n-1;i++)
+    ans/=i;
+    for(int i=1;i<=m-1;i++)
+    ans/=i;
+    cout<<ans;
+}
+
+input:
+4 4
+output:
+20
+
+// question - 5
+
+// Given three increasingly sorted arrays A, B, C of sizes N1, N2, and N3 respectively, you need to print all common elements in these arrays. 
+
+// Input Format: 
+// First line contains 3 integer of size of an array i.e N1,N2,N3.
+// Second line contain N1 i.e is  no of integer array elements.
+// Third line contain N2 i.e is no of integer array elements.
+// Fourth line contain N3 i.e is no of integer array elements.
+
+// Output Format:
+// Print integer i.e  is all common elements in these arrays.
+
+
+code:
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int n1,n2,n3;
+	cin>>n1>>n2>>n3;
+	int a1[n1],a2[n2],a3[n3];
+	for(int i=0;i<n1;i++){
+	    cin>>a1[i];
+	}
+		for(int i=0;i<n2;i++){
+	    cin>>a2[i];
+	}
+		for(int i=0;i<n3;i++){
+	    cin>>a3[i];
+	}
+	for(int i=0;i<n1;i++){
+	    for(int j=0;j<n2;j++){
+	        for(int k=0;k<n3;k++){
+	            if(a1[i]==a2[j]&&a2[j]==a3[k]){
+	                cout<<"common element is"<<a1[i];
+	            }
+	        }
+	    }
+	}
+}
+
+input:
+1
+0
+7
+8
+9
+11
+1
+77
+66
+44
+88
+
+output:
+common element is 1
+
+using map:
+
+code:
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,m,k;
+    cin>>n>>m>>k;
+    // sizes of the arrays
+    int a[n],b[m],c[k];
+    for(int i=0;i<n;i++)
+    cin>>a[i];
+    for(int i=0;i<m;i++)
+    cin>>b[i];
+    for(int i=0;i<k;i++)
+    cin>>c[i];
+    map<int,int>freq1,freq2;
+    for(int i=0;i<n;i++)
+    freq1[a[i]]++;
+    for(int i=0;i<m;i++)
+    freq2[b[i]]++;
+    for(int i=0;i<k;i++){
+        if(freq1.find(c[i])!=freq1.end() && freq2.find(c[i])!=freq2.end())
+        cout<<c[i]<<" ";
+    }
+}
+input:
+4 4 4
+1 20 30 80
+11 20 40 80
+10 12 20 80
+
+output:
+20 80 
+
+// question - 6
+
+// Given an array A of N elements. Find the majority element in the array. 
+
+// A majority element in an array A of size N is an element that appears more than N/2 times in the array.
+
+// Input Format: 
+
+// In first line enter the N i.e. is size of an array.
+// In second line enter the N no of elements.
+
+// Output Format:
+
+// Print the integer i.e. is an element that appears more than N/2 times in the array.
+
+code:
+#include<iostream>
+using namespace std;
+
+int main(){
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++){
+	    cin>>a[i];
+	}
+	int count=0;
+	for(int i=0;i<n;i++){
+	    for(int j=i+1;j<n;j++){
+	         if(a[i]==a[j]){
+	             count++;
+	         }
+	    }
+	}
+	if(count>n/2){
+	    cout<<"repeat"<<" "<<count;
+	}
+	else{
+	    cout<<"notrepeat n/2 times";
+	}
+}
+
+input:
+6
+2 2 6 2 5 2 
+output:
+repeat 6
+
+using map:
+// https://i...content-available-to-author-only...e.com/U80JOR
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,ans;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    map<int,int>freq;
+    for(int i=0;i<n;i++)
+    freq[arr[i]]++;
+    for(int i=0;i<n;i++){
+        if(freq[arr[i]]>n/2)
+        ans=arr[i];
+    }
+    cout<<ans;
+}
+input:
+9
+3 3 5 2 5 5 2 5 5
+
+output:
+5
+
+// question - 7
+
+// Write a program in C++ to find sum of right diagonals of a matrix.
+
+// Input Format: 
+
+// Input size of the square matrix.
+// Input the elements in the matrix.
+
+// Output Format:
+
+// Print sum of the right diagonals of the given matrix.
+
+code:
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin>>n;
+    int a[n][n];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>a[i][j];
+        }
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<a[i][j]<<endl;
+        }
+    }
+    int sum=0;
+     for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            if(i==j){
+                sum+=a[i][j];
+            }
+        }
+    }
+    cout<<"sum is"<<sum;
+    
+}
+input:
+4
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+11
+21
+13
+14
+15
+16
+output:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+11
+21
+13
+14
+15
+16
+sum is34
+other:
+#include <iostream>
+using namespace std;
+int main() {
+    int n,ans=0;
+    // taking n*n matrix;
+    cin>>n;
+    int matrix[n][n];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++)
+        cin>>matrix[i][j];
+    }
+    int x=0,y=0;
+    while(x<n && y<n){
+        ans+=matrix[x][y];
+        x++,y++;
+    }
+    cout<<ans;
+}
+
+input:
+2
+4 5
+1 1 
+
+output:
+5
+
+// question - 8
+
+// The word "Leader" is really a powerful word in dictionary. So some coders thought why not implement the same thing in array and develop a code in such a way that elements inside the array can be actually called as leaders.
+
+// An element is leader if it is greater than all the elements to its right side.
+
+// Input Format: 
+
+// The first line contains the size of array.
+// The second line contains elements of array.
+
+// Output Format:
+
+// The output contains the leader elements.
+
+// Constraints :
+// n<=10000
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	cout<<"practice";
+}
+
+code:
+// https://i...content-available-to-author-only...e.com/y5acD1
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int max=0,arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    vector<int>ans;
+    for(int i=n-1;i>=0;i--){
+        if(max<arr[i])
+        ans.push_back(arr[i]),max=arr[i];
+    }
+    reverse(ans.begin(),ans.end());
+    vector<int> :: iterator it;
+    for(it=ans.begin();it!=ans.end();it++)
+    cout<<(*it)<<" ";
+}
+input:
+6
+6 7 4 3 1 2
+
+output:
+7 4 3 2 
+
+other:
+
+
+9.
+you are given an array which are sorted having distinct elements.There is 1 difference between both the arrays .The array is having one extra element added in between. the tak is to find the extra element.
+input:
+A[]={2,4,6,8,9,10,12}
+B[]={2,4,6,8,10,12}
+output:4(to print index of extra element)
+
+code:
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int a[n],b[n-1];
+    for(int i=0;i<n;i++)
+    cin>>a[i];
+    for(int i=0;i<n-1;i++)
+    cin>>b[i];
+    int hi=n-2,lo=0,ans;
+    while(hi>=lo){
+        int mid=(hi+lo)/2;
+        if(a[mid]!=b[mid]){
+            ans=mid;
+            hi=mid-1;
+        } else {
+            lo=mid+1;
+        }
+    }
+    cout<<ans;
+}
+
+input:
+7
+2 4 6 8 9 10 12
+2 4 6 8 10 12
+
+output:
+4
+
+
+
+
+
+

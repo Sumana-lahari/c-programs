@@ -1,0 +1,28 @@
+// https://i...content-available-to-author-only...e.com/tWv12t
+#include <bits/stdc++.h>
+using namespace std;
+int pallindrome(string s){
+    int n=s.length(),hi=n-1,lo=0;
+    while(hi>=lo){
+        if(s[hi]!=s[lo])
+        return 0;
+        hi--;
+        lo++;
+    }
+    return 1;
+}
+int main() {
+    string s;
+    cin>>s;
+    if(pallindrome(s)==1)
+    cout<<s;
+    else {
+        string copy=s;
+        reverse(copy.begin(),copy.end());
+        cout<<s+copy;
+    }
+}
+input:
+abcbb
+output:
+abcbbbbcba

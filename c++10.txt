@@ -1,0 +1,27 @@
+// https://i...content-available-to-author-only...e.com/gjPdrS
+#include <iostream>
+using namespace std;
+int main() {
+    int n,b,ans,sum=0,rest=0;
+    cin>>n>>b;
+    int arr[n],left=n-b;
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+        rest+=arr[i];
+    }
+    for(int i=0;i<left;i++)
+    sum+=arr[i];
+    ans=sum;
+    for(int i=left;i<n;i++){
+        sum-=arr[i-left];
+        sum+=arr[i];
+        ans=min(ans,sum);
+    }
+    cout<<rest-ans;
+}
+
+input:
+5 3
+5 -2 3 1 2
+output:
+8

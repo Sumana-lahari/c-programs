@@ -1,0 +1,32 @@
+// https://i...content-available-to-author-only...e.com/DWufCO
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    string s;
+    cin>>s;
+    int n=s.length(),ans=1000000;
+    for(int i=0;i<26;i++){
+        int last=-1,arr[n],mi=-1;
+        for(int j=0;j<n;j++){
+            int c=s[j]-'a';
+            if(c==i)
+            arr[j]=1;
+            else
+            arr[j]=0;
+        }
+        for(int j=0;j<n;j++){
+            if(arr[j]==1){
+                mi=max(mi,j-last);
+                last=j;
+            }
+        }
+        mi=max(mi,n-last);
+        ans=min(ans,mi);
+    }
+    cout<<ans;
+}
+
+input:
+abacaba
+output:
+2

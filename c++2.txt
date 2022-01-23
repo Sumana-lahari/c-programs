@@ -1,0 +1,33 @@
+// https://i...content-available-to-author-only...e.com/tWv12t
+#include <iostream>
+using namespace std;
+int main() {
+    string s;
+    cin>>s;
+    int k,n=s.length(),freq[10]={0},ans=0;
+    cin>>k;
+    for(int i=0;i<n;i++){
+        int num=s[i]-'0';
+        freq[num]++;
+    }
+    int start=9;
+    while(k>0 && start>=0){
+        if(k>freq[start]){
+            k-=freq[start];
+            freq[start]=0;
+        } else {
+            freq[start]-=k;
+            k=0;
+        }
+        start--;
+    }
+    for(int i=0;i<10;i++)
+    ans+=i*freq[i];
+    cout<<ans;
+}
+
+input:
+203
+1
+output:
+2

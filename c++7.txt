@@ -1,0 +1,24 @@
+// https://i...content-available-to-author-only...e.com/DWufCO
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    string s,ans;
+    cin>>s;
+    int n=s.length();
+    for(int i=0;i<n;i++){
+        int flag=0;
+        for(int j=0;j<ans.length();j++){
+            if(ans[j]==s[i])
+            flag=1;
+        }
+        if(flag==0)
+        ans.push_back(s[i]);
+    }
+    reverse(ans.begin(),ans.end());
+    cout<<ans;
+    
+}
+input:
+talentio
+output:
+oinelat

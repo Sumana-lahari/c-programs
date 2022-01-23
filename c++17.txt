@@ -1,0 +1,337 @@
+1.greatest commonfactor
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a=10;
+    
+    int b=5;
+    
+    int count=0;
+    for(int i=1;i<=a && i<=b;i++){
+        if(a%i==0 && b%i==0){
+            count++;
+        }
+    }
+    cout<<count;
+}
+output:
+2
+
+2.printing all uppercase in one side and ;ower case in other side
+
+// https://i...content-available-to-author-only...e.com/f6pKzS
+#include <bits/stdc++.h>
+using namespace std;
+int check_u(char c){
+    if('A'<=c && c<='Z')
+    return 1;
+    return 0;
+}
+int check_l(char c){
+    if('a'<=c && c<='z')
+    return 1;
+    return 0;
+}
+int main() {
+    string s;
+    cin>>s;
+    int n=s.length(),hi=n-1,lo=0;
+    while(hi>=lo){
+        int x=check_l(s[lo]),y=check_u(s[hi]);
+        if(x==1 && y==1)
+            hi--,lo++;
+        else if(x==0 && y==0){
+            swap(s[hi],s[lo]);
+            hi--,lo++;
+        } else if(x==1){
+            lo++;
+        } else {
+            hi--;
+        }
+    }
+    cout<<s;
+}
+input:
+PyNaTive
+
+output:
+eyvaiTNP
+
+3.int palindrome or not.if it is then print palindrome .if not yhen reverse the int and add to original int till it become palindrome and return its length.
+
+// https://i...content-available-to-author-only...e.com/JYMki3
+#include <bits/stdc++.h>
+using namespace std;
+int reverse(int n){
+    int ans=0;
+    while(n){
+        ans=ans*10+n%10;
+        n=n/10;
+    }
+    return ans;
+}
+int check(int n){
+    if(n==reverse(n))
+    return 1;
+    return 0;
+}
+int count_digit(int n){
+    int ans=0;
+    while(n){
+        ans++;
+        n=n/10;
+    }
+    return ans;
+}
+int main() {
+    int n;
+    cin>>n;
+    while(check(n)==0){
+        n=n+reverse(n);
+    }
+    cout<<count_digit(n);
+}
+input:
+87
+output:
+4
+
+4.
+// https://i...content-available-to-author-only...e.com/f1XRcA
+#include <iostream>
+using namespace std;
+char make_low(char c){
+    if('a'<=c && c<='z')
+    return c;
+    return char('a'+c-'A');
+}
+int main() {
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int freq[26]={0},flag=1;
+    for(int i=0;i<s.length();i++)
+    s[i]=make_low(s[i]);
+    for(int i=0;i<s.length();i++){
+        int temp=s[i]-'a';
+        freq[temp]++;
+    }
+    for(int i=0;i<26;i++){
+        if(freq[i]==0)
+        flag=0;
+    }
+    if(flag==1)
+    cout<<"YES";
+    else
+    cout<<"NO";
+}
+input:
+12
+toosmallword
+
+output:
+no
+
+6.// Consider a string, group the similar characters in combinations. Then, concatenate first element and last element alternatively.
+// For instance, Consider a string “HelLoWOrld”, combinations of similar characters will be:
+// [‘d’, ‘e’, ‘H’, ‘lLl’, ‘oO’, ‘r’, ‘W’]
+// So, final output : dWerHoOlLl
+// Input:
+// First Input : s, string
+// Output:
+// String [Manipulated]
+// Constraints:
+// 1 ≤ T ≤ 70
+// 2 < N ≤ 10000
+
+// https://i...content-available-to-author-only...e.com/3Tp5eX
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin>>n;
+    string arr[n],ans;
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    int hi=n-1,lo=0,chance=0;
+    while(hi>=lo){
+        if(chance==0){
+            ans+=arr[lo];
+            lo++;
+            chance=1;
+        } else {
+            ans+=arr[hi];
+            hi--;
+            chance=0;
+        }
+    }
+    cout<<ans;
+}
+input:
+7
+d 
+e
+H
+ILl
+oO
+r
+w
+input:
+dwerHoOILl
+
+// You are given  integers. Sort the  integers and print the sorted order.Store the  integers in a vector. Vectors are sequence containers representing arrays that can change in size.
+
+//  Declaration:
+// vector<int>v; (creates an empty vector of integers) 
+//  Size:
+// int size=v.size(); 
+//  Pushing an integer into a vector:
+// v.push_back(x);(where x is an integer.The size increases by 1 after this.) 
+//  Popping the last element from the vector:
+// v.pop_back(); (After this the size decreases by 1) 
+//  Sorting a vector:
+// sort(v.begin(),v.end()); (Will sort all the elements in the vector) 
+// To know more about vectors,
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    vector<int>v={1,6,113,4,5};
+    vector<int> :: iterator it;
+    for(it=v.begin();it!=v.end();it++)
+    cout<<(*it)<<" ";
+    cout<<endl;
+    // doing push_back operation
+    v.push_back(5);
+    v.push_back(6);
+    cout<<"after push_back operation\n";
+    for(it=v.begin();it!=v.end();it++)
+    cout<<(*it)<<" ";
+    cout<<endl;
+    v.pop_back();
+    v.pop_back();
+    // doing pop_back operation
+    cout<<"after pop_back operation\n";
+    for(it=v.begin();it!=v.end();it++)
+    cout<<(*it)<<" ";
+    cout<<endl;
+    // performing sorting
+    sort(v.begin(),v.end());
+    cout<<"after sorting\n";
+    for(it=v.begin();it!=v.end();it++)
+    cout<<(*it)<<" ";
+}
+output:
+1 6 113 4 5 
+after push_back operation
+1 6 113 4 5 5 6 
+after pop_back operation
+1 6 113 4 5 
+after sorting
+1 4 5 6 113 
+
+// Find a pair with the given sum in an array
+// Given an unsorted integer array, find a pair with the given sum in it.
+
+// Input:nums = [8, 7, 2, 5, 3, 1]target = 10Output:Pair found (8, 2)orPair found (7, 3) 
+// Input:nums = [5, 2, 6, 8, 1, 9]target = 12Output: 
+// Pair not found
+
+
+
+// https://i...content-available-to-author-only...e.com/6cqQHS
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,target;
+    cin>>n>>target;
+    vector<int>v;
+    int l=-1,r=-1;
+    for(int i=0;i<n;i++){
+        int temp;
+        cin>>temp;
+        v.push_back(temp);
+    }
+    vector<int> :: iterator it;
+    for(it=v.begin();it!=v.end();it++){
+        vector<int> :: iterator it1;
+        for(it1=it;it1!=v.end();it1++){
+            if(it==it1)
+            continue;
+            int sum=*it+*it1;
+            if(sum==target)
+            l=*it,r=*it1;
+        }
+    }
+    if(l==-1)
+    cout<<"pair not found";
+    else
+    cout<<l<<" "<<r;
+}
+
+input;
+6 10
+8 7 2 5 3 1
+output:
+7 3
+
+// Find a triplet with the given sum in an array
+// Given an unsorted integer array, find a triplet with a given sum in it.
+
+// For example,
+// Input: nums = [ 2, 7, 4, 0, 9, 5, 1, 3 ]target = 6 Output: 
+// Triplet exists.
+// Explanation: The triplets with the given sum 6 are {0, 1, 5}, {0, 2, 4}, {1, 2, 3}
+
+
+
+
+// https://i...content-available-to-author-only...e.com/5NH5ub
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,target;
+    cin>>n>>target;
+    vector<int>v;
+    int x=-1,y=-1,z=-1;
+    for(int i=0;i<n;i++){
+        int temp;
+        cin>>temp;
+        v.push_back(temp);
+    }
+    sort(v.begin(),v.end());
+    for(int i=0;i<n;i++){
+        int desire=target-v[i],hi=n-1,lo=i+1;
+        while(hi>=lo){
+            int sum=v[hi]+v[lo];
+            if(sum==desire){
+                x=v[i],y=v[lo],z=v[hi];
+                break;
+            } else if(sum>desire){
+                hi--;
+            } else {
+                lo++;
+            }
+        }
+    }
+    if(x==-1)
+    cout<<"triplet not found";
+    else
+    cout<<x<<" "<<y<<" "<<z;
+}
+
+INPUT:
+8 6
+2 7 4 0 9 5 1 3 
+
+output:
+1 2 3
+

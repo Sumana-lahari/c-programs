@@ -1,0 +1,503 @@
+1.
+#include <bits/stdc++.h>
+using namespace std;
+void show(queue<int>q){
+    while(!q.empty()){
+        cout<<q.front()<<" ";
+        q.pop();
+    }
+    cout<<"\n";
+}
+int main() {
+    queue<int>q;
+    q.push(6);
+    q.push(7);
+    q.push(8);
+    q.push(9);
+    cout<<"after pushing values in queue\n";
+    show(q);
+    q.pop();
+    cout<<"after poping values in queue\n";
+    show(q);
+    cout<<"front value in queue\n";
+    cout<<q.front()<<"\n";
+    
+}
+output:
+after pushing values in queue
+6 7 8 9 
+after poping values in queue
+7 8 9 
+front value in queue
+7
+
+2.
+// https://i...content-available-to-author-only...e.com/fSQNsh
+#include <bits/stdc++.h>
+using namespace std;
+void a(vector<pair<pair<int,int>,string>> &v,string s,int x,int y){
+    v.push_back({{x,y},s});
+}
+int b(vector<pair<pair<int,int>,string>> v){
+    return v.size();
+}
+void c(vector<pair<pair<int,int>,string>> &v){
+    vector<pair<pair<int,int>,string>> :: iterator it;
+    for(it=v.begin();it!=v.end();it++){
+        cout<<(*it).first.first<<" "<<(*it).first.second<<" "<<(*it).second<<"\n";
+    }
+    cout<<endl;
+}
+void d(vector<pair<pair<int,int>,string>> &v){
+    sort(v.begin(),v.end());
+}
+int main() {
+    vector<pair<pair<int,int>,string>>v;
+    //inserting values in the vectors
+    a(v,"abc",0,0);
+    a(v,"xyz",1,0);
+    a(v,"tuv",0,2);
+    //printing size of vector
+    cout<<b(v)<<endl;
+    // printing the vector
+    c(v);
+    // sorting the vector
+    d(v);
+    // printing again
+    c(v);
+}
+
+output:
+3
+0 0 abc
+1 0 xyz
+0 2 tuv
+
+0 0 abc
+0 2 tuv
+1 0 xyz
+
+
+3.
+there are N bags with diamonds in them.The i'th of these bags contain Ai diamonds.If you drop a bag with p diamonds,it changes to[p/2] diamonds,and you gain p diamonds,where [p] is the greatest integer less than p.Dropping a bag takes 1 min .Find the max no.of diamonds that you take if you are given K mins.
+
+code:
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,k,ans=0;
+    cin>>n>>k;
+    priority_queue<int>q;
+    for(int i=0;i<n;i++){
+        int temp;
+        cin>>temp;
+        q.push(temp);
+    }
+    while(k--){
+        int temp=q.top();
+        ans+=temp;
+        q.pop();
+        q.push(temp/2);
+    }
+    cout<<ans;
+}
+
+input:
+5 3
+2 1 7 4 2
+output:
+14
+
+4.
+given an array sort itrs elements by its frequency.
+code:
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    map<int,int>first_index,freq;
+    vector<vector<int>>v;
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    for(int i=0;i<n;i++){
+        freq[arr[i]]++;
+        if(first_index.find(arr[i])==first_index.end())
+        first_index[arr[i]]=i;
+    }
+    for(int i=0;i<n;i++)
+    v.push_back({-freq[arr[i]],first_index[arr[i]],arr[i]});
+    sort(v.begin(),v.end());
+    vector<vector<int>> :: iterator it;
+    for(it=v.begin();it!=v.end();it++)
+    cout<<(*it)[2]<<" ";
+}
+INPUT:
+11
+3 3 1 1 1 8 3 6 8 7 8
+
+OUTPUT:
+3 3 3 1 1 1 8 8 8 6 7 
+
+5.
+given array with distinct integers ,replace the array elements by its corresponding ranks.
+code:
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+   int a[n];
+   int b[n];
+   for(int i=0;i<n;i++){
+       cin>>a[i];
+        b[i]=a[i];
+   }
+  
+   for(int i=0;i<n;i++){
+       cout<<"before sorting"<<a[i]<<endl;
+   }
+   for(int i=0;i<n;i++){
+       for(int j=i+1;j<n;j++){
+           if(a[i]>a[j]){
+               int temp=a[i];
+               a[i]=a[j];
+               a[j]=temp;
+           }
+       }
+   }
+   for(int i=0;i<n;i++){
+       cout<<"after sorting"<<a[i]<<endl;
+   }
+   for(int i=0;i<n;i++){
+       for(int j=0;j<n;j++){
+           if(b[i]==a[j])
+           cout<<j<<" "<<a[i]<<endl;
+       }
+   }
+   
+}
+input:
+5
+2 5 3 7 1
+output:
+before sorting2
+before sorting5
+before sorting3
+before sorting7
+before sorting1
+after sorting1
+after sorting2
+after sorting3
+after sorting5
+after sorting7
+1 2
+3 5
+2 3
+4 7
+0 1
+
+
+6.
+// Namebook and You
+
+// 1) You are going to make a new namebook, which contains unique usernames for each person who registers for it. Whenever a new user wants to register, the user sends his name to you and you write the name in the namebook. If such a name is not present you write the name in the namebook and send a response "OK" back to the user. If the name already exists in the namebook, you make a new username using the following method:
+
+// Smallest postitive number is appened to the user's name to get a new unique username, in this case you return the generated username as teh response to the user.
+
+// Given n names you have to generate the correct responses for them.
+
+// Input Format
+
+// The first line contains number n (1 ≤ n ≤ 10^5). The following n lines contain the requests to the system. Each request is a non-empty line, and consists of not more than 32 characters, which are all lowercase Latin letters
+
+// Constraints
+
+// (1 ≤ n ≤ 10^5)
+
+// Output Format
+
+// Print n lines, which are system responses to the requests: OK in case of successful registration, or a prompt with a new name, if the requested name is already taken.
+
+// Sample Input 0
+
+// 2
+// c
+// cn
+// Sample Output 0
+
+// OK
+// OK
+// Sample Input 1
+
+// 3
+// b
+// b
+// b
+// Sample Output 1
+
+// OK
+// b1
+// b2 
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    string arr[n];
+    map<string,int>m;
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    for(int i=0;i<n;i++){
+        if(m.find(arr[i])==m.end()){
+            cout<<"OK"<<endl;
+        } else {
+            cout<<arr[i]<<m[arr[i]]<<endl;
+        }
+        m[arr[i]]++;
+    }
+}
+
+input:
+5
+a
+ac
+b
+b
+b
+
+output:
+OK
+OK
+OK
+b1
+b2
+
+7.
+// Jack and the array
+
+// 2)Jack is fond of numbers. He has given an array.He has to find the maximum length of subarray such that sum of elements in that sub array gives output 0. He is in a bit of trouble, help him in finding a solution.
+
+// Input Format
+
+// You are given an integer ‘n’ denoting the number of elements in array. Next line contains n space separated integers.
+
+// Constraints
+
+// 1<=n<=100
+
+// -1000<=a[i]<=1000
+
+// Output Format
+
+// Print the max length of that array with sum 0.
+
+// Sample Input 0
+
+// 6
+// -4 3 1 0 0 6
+// Sample Output 0
+
+// 5
+// Sample Input 1
+
+// 5
+// 1 0 0 0 1
+// Sample Output 1
+
+// 3
+
+
+// https://i...content-available-to-author-only...e.com/bgybuc
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int ans=0,sum=0,arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    map<int,int>first_appear;
+    first_appear[0]=-1;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if(first_appear.find(sum)==first_appear.end())
+            first_appear[sum]=i;
+        else 
+            ans=max(ans,i-first_appear[sum]);
+        // cout<<i-first_appear[sum]<<endl;
+    }
+    cout<<ans;
+}
+
+input:
+5
+1 0 0 0 1
+output:
+3
+
+8.
+given n ropes of diff length ,connect them into a sinlge rope with minimum cost.Assume that the cost to connect two ropes is the same as the sum of their lengths.
+for example:
+Input:
+[5,4,2,8]
+output:
+min cost is 36
+
+code:
+// Connect `n` ropes with minimal cost
+
+// Given n ropes of different lengths, connect them into a single rope with minimum cost. Assume that the cost to connect two ropes is the same as the sum of their lengths.
+
+// For example,
+
+// Input:  [5, 4, 2, 8]
+ 
+// Output: The minimum cost is 36
+  
+// [5, 4, 2, 8] –> First, connect ropes of lengths 4 and 2 that will cost 6.
+// [5, 6, 8]    –> Next, connect ropes of lengths 5 and 6 that will cost 11.
+// [11, 8]      –> Finally, connect the remaining two ropes that will cost 19.
+ 
+// Therefore, the total cost for connecting all ropes is 6 + 11 + 19 = 36.
+
+// 
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n,ans=0;
+    cin>>n;
+    priority_queue<int,vector<int>,greater<int>>p;
+    for(int i=0;i<n;i++){
+        int temp;
+        cin>>temp;
+        p.push(temp);
+    }
+    while(p.size()>1){
+        int sum=0;
+        sum+=p.top();
+        p.pop();
+        sum+=p.top();
+        p.pop();
+        ans+=sum;
+        p.push(sum);
+    }
+    cout<<ans;
+}
+input:
+4
+5 4 2 8
+output:
+36
+
+9.// Sets are a part of the C++ STL. Sets are containers that store unique elements following a specific order. Here are some of the frequently used member functions of sets:
+
+// Declaration:
+// set<int>s; //Creates a set of integers. 
+
+// Size:
+// int length=s.size(); //Gives the size of the set. 
+
+// Insert:
+// s.insert(x); //Inserts an integer x into the set s. 
+
+// Erasing an element:
+// s.erase(val); //Erases an integer val from the set s. 
+
+
+// https://i...content-available-to-author-only...e.com/g1rLPa
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    set<int>s;
+    s.insert(1);
+    s.insert(2);
+    s.insert(3);
+    s.insert(1);
+    set<int> :: iterator it;
+    // after inserting in the set
+    for(it=s.begin();it!=s.end();it++)
+    cout<<(*it)<<" ";
+    cout<<endl;
+    // after deleteing 2
+    s.erase(2);
+    for(it=s.begin();it!=s.end();it++)
+    cout<<(*it)<<" ";
+    cout<<endl;
+    // length of the set;
+    cout<<s.size();
+}
+
+input:
+4
+5 4 2 8
+output:
+1 2 3 
+1 3 
+2
+
+10.
+// You are appointed as the assistant to a teacher in a school and she is correcting the answer sheets of the students. Each student can have multiple answer sheets. So the teacher has Q queries: 1 X Y :Add the marks Y to the student whose name is X 2 X: Erase the marks of the students whose name is X 3 X: Print the marks of the students whose name is X . (If X didn't get any marks print 0.) 
+
+// Input Format :
+// The first line of the input contains Q where Q is the number of queries. The next Q lines contain 1 query each. The first integer type, of each query is the type of the query. If query is of type 1 , it consists of one string and an integer X and Y where is X the name of the student and Y is the marks of the student.
+// If query is of type 2 or 3 ,it consists of a single string X where X is the name of the student. 
+
+// Constraints:
+//  1 <= Q <= 10^5 1 <= type <= 3 
+//  1 <= | X | <= 6 1 <= Y <= 10^3 
+//  1 <= |X| <= 6
+//  1 <= Y <= 10^3
+
+ 
+
+
+// https://i...content-available-to-author-only...e.com/g1rLPa
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    map<string,int>marks;
+    int q;
+    cin>>q;
+    while(q--){
+        int type;
+        cin>>type;
+        if(type==1){
+            string s;
+            int temp;
+            cin>>s>>temp;
+            marks[s]+=temp;
+        } else if(type==2){
+            string s;
+            cin>>s;
+            marks.erase(s);
+        } else {
+            string s;
+            cin>>s;
+            cout<<marks[s]<<"\n";
+        }
+    }
+}
+
+input:
+7 
+1 Jesse 20 
+1 Jess 12 
+1 Jess 18 
+3 Jess 
+3 Jesse 
+2 Jess 
+3 Jess 
+
+output:
+30
+20
+0
